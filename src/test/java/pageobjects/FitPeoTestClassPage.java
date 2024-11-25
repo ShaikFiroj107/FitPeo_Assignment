@@ -10,6 +10,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -125,12 +127,14 @@ public class FitPeoTestClassPage {
 
         String updatedValue = slider.getAttribute("value");
         log.info("Sucessfully updated drag distance value is  = "+updatedValue);
-        
-//        Anoter method for adjusting slider at the range 820 but this method draging slider at the end point.
+	}
+	
+//	Anoter method for adjusting slider at the range 820 but this method draging slider at the end point.
+//	public void adjustSlider(int targetValue) {   
 //        log.debug("Perform the drag-and-drop action to move the slider until " +targetValue);
 //        Actions actions = new Actions(driver);
 //        actions.dragAndDropBy(slider, targetValue, 0).perform();
-	}
+//	}
 	
 	public void updateSliderValue(int targetValue) throws InterruptedException {
 		log.debug("Update slider value text 560");
@@ -143,6 +147,40 @@ public class FitPeoTestClassPage {
 		sliderValue = Integer.parseInt(updatedValue);
 		log.info("Slider value after entering text field value: " + sliderValue);
 	}
+	
+	/*I was try to update text field with respective targetValue using JS change and input as well manually adjust with slider method too all methods are
+	 Not working as expected every method after execution slider and text field automatically updating 2000 end point value. I think so there is some issue
+	 in slider and text fied Sync issue.*/
+//	public void updateSliderValue(int targetValue) throws InterruptedException {
+//	    log.debug("Updating slider value to " + targetValue);
+//	    String updatedTargetValue = String.valueOf(targetValue);
+//	    
+//	    WebElement sliderTextField = driver.findElement(sliderTextFiled);
+//	    sliderTextField.clear();
+//	    sliderTextField.sendKeys(updatedTargetValue);
+//	    sliderTextField.sendKeys(Keys.RETURN);  // Simulate pressing 'Enter'
+//	    
+//	    JavascriptExecutor js = (JavascriptExecutor) driver;
+//	    js.executeScript("arguments[0].dispatchEvent(new Event('change'))", sliderTextField);
+//	    
+//	    // Optionally, trigger the input event using JavaScript to ensure the slider updates
+////	    JavascriptExecutor js = (JavascriptExecutor) driver;
+////	    js.executeScript("arguments[0].dispatchEvent(new Event('input'))", sliderTextField);
+//	    
+////	    JavascriptExecutor js = (JavascriptExecutor) driver;
+////	    js.executeScript("arguments[0].value = arguments[1]; arguments[0].dispatchEvent(new Event('input'));", slider, targetValue);
+//
+//	    Thread.sleep(2000);
+//
+//	    // Get the updated value of the slider
+//	    String updatedValue = slider.getAttribute("value");
+//	    log.info("Successfully retrieved updated slider value: " + updatedValue);
+//
+//	    // Validate the slider value
+//	    sliderValue = Integer.parseInt(updatedValue);
+//	    log.info("Slider value after entering text field value: " + sliderValue);
+//	}
+
 	
 	public void validateUpdateSliderValue(int targetValue) {
 		log.debug("Comapring both updated slider values");

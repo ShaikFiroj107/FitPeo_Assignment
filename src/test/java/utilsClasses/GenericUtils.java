@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -34,6 +35,12 @@ public class GenericUtils {
 		String value = driver.findElement(xpathToGetText).getText();
 		System.out.println("text value is  :" + value);
 		return value;
+	}
+	
+	public void clear(By xpathToClear) {
+		driver.findElement(xpathToClear).sendKeys(Keys.CONTROL + "a");
+		driver.findElement(xpathToClear).sendKeys(Keys.DELETE);
+
 	}
 	
 	public void sendKeysToElement(By locator, String value) {

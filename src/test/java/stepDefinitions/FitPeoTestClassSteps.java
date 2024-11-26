@@ -47,14 +47,24 @@ public class FitPeoTestClassSteps {
 		fitPeoTestClassPage.scrollUntilSliderSection();
 	}
 	
-	@Then("drag and adjust slider value until {int}")
-	public void drag_and_adjust_slider_value_until(int SliderRangeValue) {
-		fitPeoTestClassPage.adjustSlider(SliderRangeValue);
+	@Then("clear slider Text box")
+	public void clear_slider_Text_box() throws InterruptedException {
+		fitPeoTestClassPage.clearTextBox();
 	}
 	
 	@Then("Enter {int} in slider box field")
 	public void Enter_in_slider_box_field(int targetValue) throws InterruptedException {
 		fitPeoTestClassPage.updateSliderValue(targetValue);
+	}
+	
+	@Then("Drag and drop slider at expected range")
+	public void Drag_and_drop_slider_at_expected_range() throws InterruptedException {
+		fitPeoTestClassPage.adjustSlider();
+	}
+	
+	@Then("get updated text fied slider value")
+	public void get_updated_text_fied_slider_value() throws InterruptedException {
+		fitPeoTestClassPage.getUpdatedValue();
 	}
 	
 	@Then("Validate updated slider value with {int}")
